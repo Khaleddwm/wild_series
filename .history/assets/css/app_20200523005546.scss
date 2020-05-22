@@ -2,6 +2,7 @@
 $primary: darkblue;
 $secondary: red;
 // color body
-$body-bg: $secondary;
+$body-bg: $primary;
+$color: $secondary;
 // Bootstrap and its default variables
 @import "~bootstrap/scss/bootstrap";
