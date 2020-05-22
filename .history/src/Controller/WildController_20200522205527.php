@@ -76,7 +76,7 @@ class WildController extends AbstractController
     /**
      * Show last 3 rows from Program's entity by Category's entity
      * @param string $categoryName
-     * @Route("/category/{categoryName<^[a-zA-Z]+$>}", name="show_category")
+     * @Route("/category/{categoryName<^[a-zA-Z-]+$>}", name="show_category")
      * @return Response
      */
     public function showByCategory(string $categoryName) :Response
@@ -90,7 +90,7 @@ class WildController extends AbstractController
 
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
-            ->findByCategory($category, ['id' => 'desc'], 3);
+            ->findByCategory(mb_strtolower($category), ['id' => 'desc'], 3);
 
         if (!$programs) {
             throw $this->createNotFoundException(

@@ -76,7 +76,7 @@ class WildController extends AbstractController
     /**
      * Show last 3 rows from Program's entity by Category's entity
      * @param string $categoryName
-     * @Route("/category/{categoryName<^[a-zA-Z]+$>}", name="show_category")
+     * @Route("/category/{categoryName<^[a-zA-Z0-9-]+$>}", name="show_category")
      * @return Response
      */
     public function showByCategory(string $categoryName) :Response
@@ -88,15 +88,14 @@ class WildController extends AbstractController
             ->getRepository(Category::class)
             ->findOneByName($categoryName);
 
-        $programs = $this->getDoctrine()
-            ->getRepository(Program::class)
-            ->findByCategory($category, ['id' => 'desc'], 3);
-
         if (!$programs) {
             throw $this->createNotFoundException(
                 'No programs with '.$categoryName.' category, found in program\'s table'
             );
         }
+        $programs = $this->getDoctrine()
+            ->getRepository(Program::class)
+            ->findByCategory($category, ['id' => 'desc'], 3);
 
         return $this->render('wild/category.html.twig',[
             'category' => $category,
