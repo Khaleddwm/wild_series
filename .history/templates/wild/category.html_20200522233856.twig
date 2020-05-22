@@ -3,13 +3,13 @@
 {% block title %}Programs by Category{% endblock %}
 
 {% block body %}
-    <h1>Catégorie {{ category.name }}: 3 dernières séries.</h1>
+    <h1>Catégorie {{ category.name }}:  3 dernières séries.</h1>
     {% for program in programs %}
         <div>
             <h2>{{ program.id }} / {{ program.title }}</h2>
             <div style="display:flex">
-                <img class="align-self-start mr-3 col-1" src="{{ program.poster }}" alt="{{ program.title }} poster">
-                <p>{{ program.summary }}</p>
+            <img class="align-self-start mr-3 col-1" src="{{program.poster}}" alt="{{ program.title }} poster">
+            <p class="offset-1">{{ program.summary }}</p>
             </div>
         </div>
     {% else %}

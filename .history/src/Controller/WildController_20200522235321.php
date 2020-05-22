@@ -93,7 +93,7 @@ class WildController extends AbstractController
 
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
-            ->findByCategory($category, ['id' => 'desc'], 3);
+            ->findByCategory($category, ['title' => 'desc'], 3);
 
         if (!$programs) {
             throw $this->createNotFoundException(
