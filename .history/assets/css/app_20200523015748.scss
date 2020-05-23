@@ -1,16 +1,14 @@
 // Theme color
 $primary: darkblue;
 $secondary: red;
-$link-color: white;
 // color body 
-$body-bg: $primary;
-$body-color: $secondary;
-
+$body-bg: $secondary;
 // Bootstrap and its default variables
 @import "~bootstrap/scss/bootstrap";
 
-// margin all site
-.base {
-    margin: 20px;
+body {
+    color: $primary;
 }
-
+.base {
+    margin:20px;
+}
