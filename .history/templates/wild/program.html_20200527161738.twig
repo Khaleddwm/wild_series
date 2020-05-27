@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Programs by title{% endblock %}
+
+{% block body %}
+    <h1>{{ program.title }}</h1>
+    <img class="align-self-start mr-3 col-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
+    {% for season in seasons %}
+        <div>
+            <h2>Saison : {{ season.number }}</h2>
+            <div style="display:flex">
+                
+                <p>{{ program.synopsis }}</p>
+            </div>
+        </div>
+    {% else %}
+        Aucune série trouvée.
+    {% endfor %}
+    <a href="{{ path('app_index') }}">
+        Retour à l'accueil
+    </a>
+{% endblock %}
