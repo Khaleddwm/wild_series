@@ -135,6 +135,11 @@ class WildController extends AbstractController
             );
         }
         $seasons = $program->getSeasons();
+        if (!$seasons) {
+            throw $this->createNotFoundException(
+                'No seasons with '.$programTitle.' program, found in program\'s table'
+            );
+        }
         
         return $this->render('wild/program.html.twig', [
             'program' => $program,
