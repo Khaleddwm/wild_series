@@ -19,6 +19,10 @@
     {% else %}
         <p>Aucune série trouvée.</p>
     {% endfor %}
+    {{ form_start(form) }}
+    {{ form_row(form.searchField) }}
+    <button type="submit" name="btnSearch">Rechercher</button>
+    {{ form_end(form) }}
     <div class="d-flex flex-row-reverse">
         <a href="{{ path('app_index') }}">
             Retour à l'accueil

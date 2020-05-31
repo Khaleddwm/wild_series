@@ -49,6 +49,7 @@ class WildController extends AbstractController
             'wild/index.html.twig',
             ['programs' => $programs,
              'form' => $form->createView(),
+            
         ]);
     }
 
@@ -105,7 +106,7 @@ class WildController extends AbstractController
             ->findOneByName(mb_strtolower($categoryName));
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
-            ->findByCategory($category);
+            ->findByCategory($category, ['id' => 'DESC'], 3);
         if (!$programs) {
             throw $this->createNotFoundException(
                 'No programs with '.$category.' category, found in program\'s table'

@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% form_theme form 'foundation_5_layout.html.twig' %}
 
 {% block title %}All programs{% endblock %}
 
@@ -17,8 +17,12 @@
             </div>
         </div>
     {% else %}
-        <p>Aucune série trouvée.</p>
+        Aucune série trouvée.
     {% endfor %}
+    {{ form_start(form) }}
+    {{ form_row(form.searchField) }}
+    <button type="submit" name="btnSearch">Rechercher</button>
+    {{ form_end(form) }}
     <div class="d-flex flex-row-reverse">
         <a href="{{ path('app_index') }}">
             Retour à l'accueil
