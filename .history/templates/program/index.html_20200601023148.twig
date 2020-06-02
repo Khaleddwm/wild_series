@@ -21,7 +21,7 @@
         {% for program in programs %}
             <tr>
                 <td>{{ program.id }}</td>
-                <td><a href="{{ path('wild_show_program', { 'programTitle': program.title }) }}"><img class="poster col-6" src="{{ program.poster }}" href=""/></a></td>
+                <a href="{{ path('wild_show_program', { 'programTitle': program.title }) }}"><td><img class="poster col-6" src="{{ program.poster }}" /></td></a>
                 <td>{{ program.title }}</td>
                 <td>{{ program.synopsis }}</td>
                 <td>{{ program.year }}</td>
