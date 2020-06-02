@@ -7,11 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
- * @UniqueEntity("title", message="ce titre existe déjà")
  */
 class Program
 {
@@ -27,13 +25,12 @@ class Program
      * @Assert\NotBlank(message="Vous devez entrer un titre de programme")
      * @Assert\Length(max="255",
      *      maxMessage="La catégorie saisie {{ value }} est trop longue, elle ne devrait pas dépasser {{ limit }} caractères")
-     * @Assert\Regex("/plus belle la vie/", match=false, message="On parle de vraies séries ici")
+     * @Assert\Unique
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=1000)
-     * @Assert\NotBlank(message="Vous devez entrer une description du programme")
+     * @ORM\Column(type="string", length=500)
      */
     private $synopsis;
 

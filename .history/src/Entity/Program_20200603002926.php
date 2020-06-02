@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
- * @UniqueEntity("title", message="ce titre existe déjà")
+ * @UniqueEntity("title", message="ok")
  */
 class Program
 {

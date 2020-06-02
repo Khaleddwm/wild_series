@@ -22,9 +22,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank(message="ne me laisse pas tout vide")
-     * @Assert\Length(max="255", maxMessage="La catégorie saisie {{ value }} est trop longue, elle ne devrait pas dépasser {{ limit }} caractères")
-     * @Assert\Length(min="2", minMessage="La catégorie saisie {{ value }} est trop courte, elle ne devrait pas être en dessous de {{ limit }} caractères")
+     * @Assert\NotBlank()
      */
     private $name;
 

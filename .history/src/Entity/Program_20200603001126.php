@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
- * @UniqueEntity("title", message="ce titre existe déjà")
+ * @UniqueEntity("title")
  */
 class Program
 {
@@ -32,7 +32,7 @@ class Program
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="string", length=500)
      * @Assert\NotBlank(message="Vous devez entrer une description du programme")
      */
     private $synopsis;
