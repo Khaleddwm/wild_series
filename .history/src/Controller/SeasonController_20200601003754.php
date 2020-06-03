@@ -1,10 +1,5 @@
 <?php
-/**
- * Auteur: Khaled Benharrat
- * Date: 19/05/2020
- */
 
-// src/Controller/SeasonController.php
 namespace App\Controller;
 
 use App\Entity\Season;
