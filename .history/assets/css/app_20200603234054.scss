@@ -8,6 +8,8 @@ $body-color: $secondary;
 
 // Bootstrap and its default variables
 @import "~bootstrap/scss/bootstrap";
+@import '~font-awesome/css/font-awesome.css';
+@import "var";
 
 // margin all site
 .base {

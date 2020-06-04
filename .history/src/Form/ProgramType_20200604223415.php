@@ -20,13 +20,7 @@ class ProgramType extends AbstractType
             ->add('year')
             ->add('country')
             ->add('category', null, ['choice_label' => 'name'])
-            ->add('actors', EntityType::class, [
-            'class' => Actor::class,
-            'expanded' => true,
-            'multiple' => true,
-            'by_reference' => false,
-            'choice_label' => 'name',
-        ]);
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
