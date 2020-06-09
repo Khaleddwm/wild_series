@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Programs by title{% endblock %}
+
+{% block body %}
+
+    <h1>{{ program.title }}</h1>
+    <h3>Saison {{ seasons.number }} {{ seasons.year }}</h3>
+    {% for episode in episodes %}
+        <div style="display:flex">
+            <img class="align-self-start mr-3 col-2" src="{{ program.poster }}" alt="{{ program.title }} poster">
+            <div>
+                <h2>Episode {{ episode.number }} : {{ episode.title }}</h2>
+                <p>{{ episode.synopsis }}</p>
+                </div>
+            </div>
+    {% else %}
+        <h3>Aucun episode trouvé.</h3>
+    {% endfor %}
+    <div class="d-flex flex-row-reverse">
+        <a href="{{ path('app_index') }}">
+            Retour à l'accueil
+        </a>
+    </div>
+
+{% endblock %}

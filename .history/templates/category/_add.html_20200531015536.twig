@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category's add{% endblock %}
+
+{% block body %}
+
+    <h1>Toutes catégories </h1>
+    {% for category in categories %}
+        <div>
+            <a href="{{ path('wild_show_category', { 'categoryName': category.name }) }}">
+        </div>
+    {% else %}
+        <p>Aucune catégorie trouvée.</p>
+    {% endfor %}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button type="submit" name="btnSearch">Rechercher</button>
+    {{ form_end(form) }}
+    <div class="d-flex flex-row-reverse">
+        <a href="{{ path('app_index') }}">
+            Retour à l'accueil
+        </a>
+    </div>
+
+{% endblock %}
