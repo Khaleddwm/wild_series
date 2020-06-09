@@ -30,15 +30,15 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
         // reference episode
         $ref = 0;
         // on créé 720 episodes
-        for ($s = 0; $s < 60; $s++) {
-            for ($e = 0; $e < 12; $e++) {
+        for ($e = 0; $e < 60; $e++) {
+            for ($i = 0; $i < 12; $i++) {
                 $episode = new Episode();
-                $episode->setNumber($e + 1);
+                $episode->setNumber($i + 1);
                 $episode->setTitle($faker->realText($maxNbChars = 30));
                 $episode->setSlug($this->slugify->generate($episode->getTitle()));
                 $episode->setSynopsis($faker->realText($maxNbChars = 1200));
                 $manager->persist($episode);
-                $episode->setSeason($this->getReference('season_' . $s));
+                $episode->setSeason($this->getReference('season_' . $e));
                 $this->addReference('episode_' . $ref, $episode);
                 $ref++;
             }
