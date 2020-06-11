@@ -36,7 +36,7 @@ class ProgramController extends AbstractController
     /**
      * @Route("/new", name="program_new", methods={"GET","POST"})
      */
-    public function new(Request $request, Slugify $slugify, MailerInterface $mailer): Response
+    public function new(Request $request, Slugify $slugify): Response
     {
         $program = new Program();
         $form = $this->createForm(ProgramType::class, $program);
@@ -50,12 +50,12 @@ class ProgramController extends AbstractController
             $entityManager->flush();
 
             $email = (new Email())
-                ->from('email@example.com')
-                ->to('email@gmail.com')
+                ->from('mailer_to')
+                ->to('k.benharrat@gmail.com')
                 ->subject('Une nouvelle série vient d\'être publiée !')
                 ->html('<p>Une nouvelle série vient d\'être publiée sur Wild Séries !</p>');
 
-            $mailer->send($email);
+        $mailer->send($email);
 
             return $this->redirectToRoute('program_index');
         }

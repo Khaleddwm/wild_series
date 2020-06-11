@@ -50,8 +50,8 @@ class ProgramController extends AbstractController
             $entityManager->flush();
 
             $email = (new Email())
-                ->from('email@example.com')
-                ->to('email@gmail.com')
+                ->from('jeanmi@example.com')
+                ->to('k.benharrat@gmail.com')
                 ->subject('Une nouvelle série vient d\'être publiée !')
                 ->html('<p>Une nouvelle série vient d\'être publiée sur Wild Séries !</p>');
 
