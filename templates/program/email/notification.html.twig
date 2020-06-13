@@ -11,19 +11,19 @@
     <h1>Une nouvelle série vient d'arrivée</h1>
     <h2>Titre de la série</h2>
         <ul>
-            <li>{{ newProgram.title }}</li>
+            <li><h3>{{ newProgram.title }}</h3></li>
         </ul>
     <h2>Descritpion</h2>
         <ul>
-            <li>{{ newProgram.synopsis }}</li>
+            <li><h3>{{ newProgram.synopsis }}</h3></li>
         </ul>
         <div>
             <img style="max-width: 250px;" src="{{ newProgram.poster }}" />
         </div> 
-    <h3>Les acteurs principaux :</h3>
+    <h2>Les acteurs principaux :</h2>
         <ul>
         {% for actor in newProgram.actors %}
-            <li>{{ actor.name }} </li></a>
+            <li><h3>{{ actor.name }}</h3></li></a>
         {% else %}
             <li>Aucun acteur pour cette série</li>
         {% endfor %}
