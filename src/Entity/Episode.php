@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\EpisodeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=EpisodeRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\EpisodeRepository")
  */
 class Episode
 {
@@ -18,22 +19,22 @@ class Episode
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $number;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $synopsis;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Season::class, inversedBy="episodes")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Season", inversedBy="episodes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $season;
@@ -42,6 +43,16 @@ class Episode
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="episode")
+     */
+    private $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -53,7 +64,7 @@ class Episode
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -65,7 +76,7 @@ class Episode
         return $this->number;
     }
 
-    public function setNumber(int $number): self
+    public function setNumber(?int $number): self
     {
         $this->number = $number;
 
@@ -77,7 +88,7 @@ class Episode
         return $this->synopsis;
     }
 
-    public function setSynopsis(string $synopsis): self
+    public function setSynopsis(?string $synopsis): self
     {
         $this->synopsis = $synopsis;
 
@@ -104,6 +115,37 @@ class Episode
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setEpisode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getEpisode() === $this) {
+                $comment->setEpisode(null);
+            }
+        }
 
         return $this;
     }

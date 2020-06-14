@@ -4,6 +4,10 @@
 
 {% block body %}
     <h1>Episode</h1>
+    {% if app.user %}
+      <a href="{{ path('comment_new', {'slug' : episode.slug }) }}">commentez cette épisode</a>
+    {% else %}
+    {% endif %}
 
     <table class="table">
         <tbody>
@@ -23,12 +27,20 @@
                 <th>Synopsis</th>
                 <td>{{ episode.synopsis }}</td>
             </tr>
-        </tbody>
-    </table>
+    {% for comments in episode.comments %}
+            <tr>
+                <th>Commentaires</th>
+                <td>{{ comments.comment }}</td>
+                <td>Note {{ comments.rate }}/5</td>
+            </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
 
-    <a href="{{ path('episode_index') }}">back to list</a>
-
-    <a href="{{ path('episode_edit', { 'slug': episode.slug }) }}">edit</a>
-
-    {{ include('episode/_delete_form.html.twig') }}
 {% endblock %}
