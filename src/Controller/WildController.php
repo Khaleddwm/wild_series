@@ -97,11 +97,6 @@ class WildController extends AbstractController
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
             ->findByCategory($category);
-        if (!$programs) {
-            throw $this->createNotFoundException(
-                'No programs with '.$category.' category, found in program\'s table'
-            );
-        }
 
         return $this->render('wild/category.html.twig',[
             'category' => $category,

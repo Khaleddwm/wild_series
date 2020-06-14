@@ -35,6 +35,7 @@
         {% for comments in episode.comments %}
             <tr>
                 <th>Commentaires</th>
+                <td><strong>{{ app.user.username }}</strong></td>
                 <td>{{ comments.comment }}</td>
                 <th>Note<th>
                 <td>{{ comments.rate }}/5</td>

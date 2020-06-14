@@ -26,7 +26,8 @@ class UserFixtures extends Fixture
             $subscriber,
             'benkod'
         ));
-
+        $subscriber->setUsername('Khaled B.');
+        
         $manager->persist($subscriber);
 
         // Création d’un utilisateur de type “administrateur”
@@ -37,6 +38,7 @@ class UserFixtures extends Fixture
             $admin,
             'benkod'
         ));
+        $admin->setUsername('Benkod');
 
         $manager->persist($admin);
 
