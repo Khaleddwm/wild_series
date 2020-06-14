@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Episode</h1>
     {% if app.user %}
-      <a href="{{ path('comment_new', {'slug' : episode.slug }) }}">commentez cette épisode</a>
+      <a href="{{ path('comment_new', {'slug' : episode.slug }) }}">Commentez cette épisode</a>
     {% else %}
     {% endif %}
 
@@ -32,6 +32,7 @@
                 <th>Commentaires</th>
                 <td>{{ comments.comment }}</td>
                 <td>Note {{ comments.rate }}/5</td>
+                <td><a href="{{ path('comment_edit', {'id': comments.id}) }}">Modifier ce commentaire</a></td>
             </tr>
             {% else %}
                 <tr>

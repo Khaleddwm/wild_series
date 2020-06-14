@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Episode;
-use App\Entity\User;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,7 +34,7 @@ class CommentController extends AbstractController
      * @param string $episode slug
      * @param int $author user id
      */
-    public function new(Request $request, Episode $episode, ?UserInterface $author): Response
+    public function new(Request $request, Episode $episode, UserInterface $author): Response
     {
         $comment = new Comment();
         $comment->setEpisode($episode);
@@ -69,16 +68,19 @@ class CommentController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="comment_edit", methods={"GET","POST"})
+     * 
+     * @param string $episode slug
      */
     public function edit(Request $request, Comment $comment): Response
     {
+        $episode = $comment->getEpisode();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('comment_index');
+            return $this->redirectToRoute('episode_show', ['slug' => $episode->getSlug()]);
         }
 
         return $this->render('comment/edit.html.twig', [

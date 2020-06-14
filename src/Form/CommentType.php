@@ -17,11 +17,11 @@ class CommentType extends AbstractType
             ->add('comment', TextareaType::class)
             ->add('rate', ChoiceType::class, [
                 'choices' => [
-                    '1' => 1,
-                    '2' => 2,
-                    '3' => 3,
-                    '4' => 4,
-                    '5' => 5,
+                    'Très moyen' => 1,
+                    'Moyen' => 2,
+                    'Bien' => 3,
+                    'Très bien' => 4,
+                    'Excellent' => 5,
             ]]);
     }
 
