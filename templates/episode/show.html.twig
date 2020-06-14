@@ -3,6 +3,7 @@
 {% block title %}Episode{% endblock %}
 
 {% block body %}
+<section>
     <h1>Episode</h1>
     {% if app.user %}
       <a href="{{ path('comment_new', {'slug' : episode.slug }) }}">Commentez cette épisode</a>
@@ -51,9 +52,6 @@
             {% endfor %}
          </tbody>
     </table>
-            
-       
-        
 </section>
 
 {% endblock %}
