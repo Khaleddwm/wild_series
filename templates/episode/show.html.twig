@@ -6,6 +6,7 @@
     <h1>Episode</h1>
     {% if app.user %}
       <a href="{{ path('comment_new', {'slug' : episode.slug }) }}">Commentez cette épisode</a>
+      <a class="d-flex justify-content-end" href="{{ path('wild_show_episode', { 'id': episode.id }) }}">Retourner sur la page de l'épisode</a>
     {% else %}
     {% endif %}
 
@@ -27,21 +28,31 @@
                 <th>Synopsis</th>
                 <td>{{ episode.synopsis }}</td>
             </tr>
-    {% for comments in episode.comments %}
+        </tbody>
+    </table>
+    <table class="table">
+        <tbody>
+        {% for comments in episode.comments %}
             <tr>
                 <th>Commentaires</th>
                 <td>{{ comments.comment }}</td>
-                <td>Note {{ comments.rate }}/5</td>
+                <th>Note<th>
+                <td>{{ comments.rate }}/5</td>
+                {% if app.user %}
                 <td><a href="{{ path('comment_edit', {'id': comments.id}) }}">Modifier ce commentaire</a></td>
+                {% else %}
+                {% endif %}
             </tr>
             {% else %}
-                <tr>
-                    <td colspan="4">no records found</td>
-                </tr>
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
             {% endfor %}
-            </tbody>
-        </table>
-    </div>
+         </tbody>
+    </table>
+            
+       
+        
 </section>
 
 {% endblock %}

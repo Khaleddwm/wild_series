@@ -69,18 +69,17 @@ class CommentController extends AbstractController
     /**
      * @Route("/{id}/edit", name="comment_edit", methods={"GET","POST"})
      * 
-     * @param string $episode slug
+     * @param array Comment $comment
      */
     public function edit(Request $request, Comment $comment): Response
     {
-        $episode = $comment->getEpisode();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('episode_show', ['slug' => $episode->getSlug()]);
+            return $this->redirectToRoute('episode_show', ['slug' => $comment->getEpisode()->getSlug()]);
         }
 
         return $this->render('comment/edit.html.twig', [
