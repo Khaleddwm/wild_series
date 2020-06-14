@@ -23,8 +23,12 @@
                 <td>{{ season.year }}</td>
                 <td>{{ season.description }}</td>
                 <td>
+                    {% if app.user %}
                     <a href="{{ path('season_show', {'id': season.id}) }}">show</a>
+                    {% endif %}
+                    {% if is_granted ('ROLE_ADMIN') %}
                     <a href="{{ path('season_edit', {'id': season.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

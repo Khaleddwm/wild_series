@@ -7,6 +7,14 @@
     <div>
         <h1>{{ program.title }}</h1>
         <h3>Année de production : {{ program.year }}</h3>
+        <table class="table" style="border-bottom:1px solid white;">
+            <tbody>
+                <tr>
+                    <th>Synopsis</th>
+                    <td>{{ program.synopsis }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     {% for season in seasons %}
         <div class="d-flex">

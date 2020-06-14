@@ -11,8 +11,8 @@
       <p>{{ episode.synopsis }}</p>
       <a href="{{ path('wild_show_season', { 'seasonId': season.id }) }}"><p>Saison {{ season.number }}</p></a>
       <a href="{{ path('wild_show_program', { 'programTitle': program.title }) }}"><p>{{ program.title }}</p></a>
-      <a href="{{ path('episode_show', { 'slug': episode.slug }) }}"><p>Commentaires sur cet épisode</p></a>
       {% if app.user %}
+      <a href="{{ path('episode_show', { 'slug': episode.slug }) }}"><p>Commentaires sur cet épisode</p></a>
       <a href="{{ path('comment_new', {'slug' : episode.slug }) }}"><p>Commentez cette épisode</p></a>
       {% else %}
     {% endif %}

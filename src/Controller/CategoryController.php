@@ -7,6 +7,7 @@
 // src/Controller/CategoryController.php
 namespace App\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,7 @@ class CategoryController extends AbstractController
      * Show all rows from Category's entity
      * Add category name in Category's entity
      * @Route("/add", name="add")
+     * @IsGranted("ROLE_ADMIN")
      * @return Response A response instance
      */
     public function add(Request $request) :Response

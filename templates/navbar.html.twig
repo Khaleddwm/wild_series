@@ -9,9 +9,6 @@
         <a class="nav-link" href="{{ path('wild_index') }}">Wild Series<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ path('category_add') }}">Catégorie</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="{{ path('program_index') }}">Program</a>
       </li>
       <li class="nav-item">
@@ -23,6 +20,11 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ path('actor_index') }}">Actor</a>
       </li>
+      {% if is_granted ('ROLE_ADMIN') %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('category_add') }}">Ajouter une catégorie</a>
+      </li>
+      {% endif %}
     </ul>
     <form class="form-inline my-2 my-lg-0">
     {% if app.user %}

@@ -10,7 +10,6 @@
       <a class="d-flex justify-content-end" href="{{ path('wild_show_episode', { 'id': episode.id }) }}">Retourner sur la page de l'épisode</a>
     {% else %}
     {% endif %}
-
     <table class="table">
         <tbody>
             <tr>
@@ -36,13 +35,14 @@
         {% for comments in episode.comments %}
             <tr>
                 <th>Commentaires</th>
-                <td><strong>{{ app.user.username }}</strong></td>
+                <td><strong>{{ comments.author.username }}</strong></td>
                 <td>{{ comments.comment }}</td>
                 <th>Note<th>
                 <td>{{ comments.rate }}/5</td>
-                {% if app.user %}
+                {% if app.user.id == comments.author.id or is_granted('ROLE_ADMIN') %}
                 <td><a href="{{ path('comment_edit', {'id': comments.id}) }}">Modifier ce commentaire</a></td>
                 {% else %}
+                <td></td>
                 {% endif %}
             </tr>
             {% else %}
