@@ -7,6 +7,8 @@
 // src/Controller/EpisodeController.php
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Entity\Episode;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
@@ -25,11 +27,21 @@ class EpisodeController extends AbstractController
     /**
      * @Route("/", name="episode_index", methods={"GET"})
      */
-    public function index(EpisodeRepository $episodeRepository): Response
+    public function index(EpisodeRepository $episodeRepository, UserRepository $userRepository) :Response
     {
-        return $this->render('episode/index.html.twig', [
-            'episodes' => $episodeRepository->findAll(),
-        ]);
+        if (empty($userRepository->findAll())) {
+            return $this->redirectToRoute('admin_register');
+        } else {
+            $episodes = $episodeRepository->findAll();
+            if (!$episodes) {
+                throw $this->createNotFoundException(
+                    'No episode found in episode\'s table.'
+                );
+            }
+            return $this->render('episode/index.html.twig', [
+            'episodes' => $episodes,
+            ]);
+        } 
     }
 
     /**

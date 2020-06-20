@@ -7,10 +7,13 @@
 // src/Controller/WildController.php
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ProgramRepository;
 use App\Entity\Program;
 use App\Entity\Season;
 use App\Entity\Episode;
@@ -26,21 +29,21 @@ class WildController extends AbstractController
      * @Route("/", name="index")
      * @return Response A response instance
      */
-    public function index() :Response
+    public function index(ProgramRepository $programRepository, UserRepository $userRepository) :Response
     {
-        $programs = $this->getDoctrine()
-            ->getRepository(Program::class)
-            ->findAll();
-        if (!$programs) {
-            throw $this->createNotFoundException(
-                'No program found in program\'s table.'
-            );
-        }
-
-        return $this->render(
-            'wild/index.html.twig',
-            ['programs' => $programs,
-        ]);
+        if (empty($userRepository->findAll())) {
+            return $this->redirectToRoute('admin_register');
+        } else {
+            $programs = $programRepository->findAll();
+            if (!$programs) {
+                throw $this->createNotFoundException(
+                    'No program found in program\'s table.'
+                );
+            }
+            return $this->render('wild/index.html.twig', [
+            'programs' => $programs,
+            ]);
+        } 
     }
 
     /**

@@ -7,6 +7,8 @@
 // src/Controller/ActorController.php
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Entity\Actor;
 use App\Entity\Program;
 use App\Repository\ActorRepository;
@@ -26,11 +28,21 @@ class ActorController extends AbstractController
      * @Route("/", name="index", methods={"GET"})
      * @return Response A response instance
      */
-    public function index(ActorRepository $actorRepository): Response
+    public function index(ActorRepository $actorRepository, UserRepository $userRepository) :Response
     {
-        return $this->render('actor/index.html.twig', [
-            'actors' => $actorRepository->findAll(),
-        ]);
+        if (empty($userRepository->findAll())) {
+            return $this->redirectToRoute('admin_register');
+        } else {
+            $actors = $actorRepository->findAll();
+            if (!$actors) {
+                throw $this->createNotFoundException(
+                    'No actors found in actor\'s table.'
+                );
+            }
+            return $this->render('actor/index.html.twig', [
+            'actors' => $actors,
+            ]);
+        } 
     }
 
     /**

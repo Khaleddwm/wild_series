@@ -8,7 +8,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Repository\ActorRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

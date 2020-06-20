@@ -7,6 +7,8 @@
 // src/Controller/SeasonController.php
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Entity\Season;
 use App\Form\SeasonType;
 use App\Repository\SeasonRepository;
@@ -24,11 +26,21 @@ class SeasonController extends AbstractController
     /**
      * @Route("/", name="season_index", methods={"GET"})
      */
-    public function index(SeasonRepository $seasonRepository): Response
+    public function index(SeasonRepository $seasonRepository, UserRepository $userRepository) :Response
     {
-        return $this->render('season/index.html.twig', [
-            'seasons' => $seasonRepository->findAll(),
-        ]);
+        if (empty($userRepository->findAll())) {
+            return $this->redirectToRoute('admin_register');
+        } else {
+            $seasons = $seasonRepository->findAll();
+            if (!$seasons) {
+                throw $this->createNotFoundException(
+                    'No season found in season\'s table.'
+                );
+            }
+            return $this->render('season/index.html.twig', [
+            'seasons' => $seasons,
+            ]);
+        } 
     }
 
     /**

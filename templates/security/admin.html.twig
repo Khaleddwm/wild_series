@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register first admin{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <div class="container">
+        <h1>Créer un compte administrateur</h1>
+
+        {{ form_start(adminForm) }}
+            {{ form_row(adminForm.email) }}
+            {{ form_row(adminForm.plainPassword, { label: 'Password' }) }}
+            {{ form_row(adminForm.username, { label: 'Pseudo' }) }}
+            
+            {{ form_row(adminForm.agreeTerms) }}
+
+            <button type="submit" class="btn btn-outline-success">Ajouter</button>
+        {{ form_end(adminForm) }}
+    </div>
+{% endblock %}
