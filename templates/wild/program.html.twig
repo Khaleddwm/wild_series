@@ -7,6 +7,9 @@
     <div>
         <h1>{{ program.title }}</h1>
         <h3>Année de production : {{ program.year }}</h3>
+        {% if is_granted ('ROLE_ADMIN') %}
+        <a href="{{ path('program_edit', { 'slug': program.slug} ) }}">Éditer</a>
+        {% endif %}
         <table class="table" style="border-bottom:1px solid white;">
             <tbody>
                 <tr>
@@ -27,6 +30,7 @@
     {% else %}
         <h3>Aucune saison trouvée.</h3>
     {% endfor %}
+    
     <div class="d-flex flex-row-reverse">
         <a href="{{ path('app_index') }}">
             Retour à l'accueil

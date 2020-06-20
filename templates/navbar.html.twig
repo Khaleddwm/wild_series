@@ -29,9 +29,9 @@
     <form class="form-inline my-2 my-lg-0">
     {% if app.user %}
     {{ app.user.email }}
-      <a class="btn btn-outline-primary my-2 my-sm-0" type="button" href="{{ path('app_logout') }}"> Se déconnecter</a>
+      <a class="btn btn-outline-primary my-2 my-sm-0" type="button" href="{{ path('app_profile') }}">Mon compte</a>
     {% else %}
-      <a class="btn btn-outline-primary my-2 my-sm-0" type="button" href="{{ path('app_login') }}"> Se connecter</a>
+      <a class="btn btn-outline-primary my-2 my-sm-0" type="button" href="{{ path('app_login') }}">Se connecter</a>
     {% endif %}
     </form>
   </div>

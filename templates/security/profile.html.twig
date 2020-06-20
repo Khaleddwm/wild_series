@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <h1>Mon compte</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ profile.username }}</td>
+            </tr>
+            <tr>
+                <th>Adresse mail</th>
+                <td>{{ profile.email }}</td>
+            </tr>
+            <tr>
+                <th>Descritpion</th>
+                <td>{{ profile.description }}</td>    
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-between">
+        <a class="btn btn-outline-danger" type="button" href="{{ path('app_logout') }}">Se déconnecter</a>
+        <a class="btn btn-outline-warning" href="{{ path('app_index') }}">Retourner à l'accueil</a>
+    </div>
+{% endblock %}

@@ -6,8 +6,10 @@
 <section>
     <h1>Episode</h1>
     {% if app.user %}
-      <a href="{{ path('comment_new', {'slug' : episode.slug }) }}">Commentez cette épisode</a>
-      <a class="d-flex justify-content-end" href="{{ path('wild_show_episode', { 'id': episode.id }) }}">Retourner sur la page de l'épisode</a>
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-outline-light" href="{{ path('comment_new', {'slug' : episode.slug }) }}">Commentez cette épisode</a>
+            <a class="btn btn-outline-light" href="{{ path('wild_show_episode', { 'id': episode.id }) }}">Retourner sur la page de l'épisode</a>
+        </div>
     {% else %}
     {% endif %}
     <table class="table">
