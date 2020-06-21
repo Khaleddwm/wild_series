@@ -8,17 +8,17 @@
         <h1>{{ program.title }}</h1>
         <h3>Année de production : {{ program.year }}</h3>
         {% if is_granted ('ROLE_ADMIN') %}
-        <a href="{{ path('program_edit', { 'slug': program.slug} ) }}">Éditer</a>
+            <a href="{{ path('program_edit', { 'slug': program.slug} ) }}">Éditer</a>
         {% endif %}
-        <table class="table" style="border-bottom:1px solid white;">
-            <tbody>
-                <tr>
-                    <th>Synopsis</th>
-                    <td>{{ program.synopsis }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            <table class="table" style="border-bottom:1px solid white;">
+                <tbody>
+                    <tr>
+                        <th>Synopsis</th>
+                        <td>{{ program.synopsis }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     {% for season in seasons %}
         <div class="d-flex">
             <img class="align-self-start mr-3 col-2" src="{{ program.poster }}" alt="{{ program.title }} poster">

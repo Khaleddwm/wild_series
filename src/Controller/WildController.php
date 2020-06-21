@@ -47,6 +47,18 @@ class WildController extends AbstractController
     }
 
     /**
+     * Show all rows from Program's entity
+     * @Route("/testpic", name="text_picture")
+     * @return Response A response instance
+     */
+    public function testPic(ProgramRepository $programRepository) :Response
+    {
+        return $this->render('wild/testpic.html.twig', [
+        'programs' => $programRepository->findAll(),
+        ]);
+    }
+
+    /**
     * Getting a program with a formatted slug for title
     *
     * @param string $slug The slugger

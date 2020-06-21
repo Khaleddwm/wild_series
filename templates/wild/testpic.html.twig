@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All programs{% endblock %}
+
+{% block body %}
+    <div class="container" style="text-align:center; margin-bottom:50px">
+        <h1 style="margin-bottom:50px">Séries à l'affiche</h1>
+        {% for program in programs %}
+            {% if loop.index is divisible by (2) %}
+            <div  style="border:1px solid; border-radius:5%; margin-bottom:20px">
+                <h2 >{{ program.title }}</h2>
+                <div class="d-flex">
+                    <p style="margin:20px">{{ program.synopsis }}</p>
+                    <img class="offset-1 align-self-start mr-3 col-4" style="margin:20px" src="{{ program.poster }}" alt="{{ program.title }} poster">
+                </div>
+            </div>
+            {% else %}
+            <div style="border:1px solid; border-radius:5%; margin-bottom:20px">
+                <h2 >{{ program.title }}</h2>
+                <div class="d-flex">
+                    <img class="align-self-start mr-3 col-4" style="margin:20px" src="{{ program.poster }}" alt="{{ program.title }} poster">
+                    <p class="offset-1" style="margin:20px">{{ program.synopsis }}</p>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}
